@@ -3,7 +3,9 @@ import json
 import pathlib
 from typing import reveal_type
 
-order = json.loads(pathlib.Path("order.json").read_text(encoding="utf-8"))
+order = json.loads(
+    (pathlib.Path(__file__).parent / "order.json").read_text(encoding="utf-8")
+)
 item = order["items"][0]
 
 reveal_type(item["price"])

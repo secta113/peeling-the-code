@@ -4,7 +4,9 @@ import pathlib
 
 from models import Order
 
-raw = json.loads(pathlib.Path("order.json").read_text(encoding="utf-8"))
+raw = json.loads(
+    (pathlib.Path(__file__).parent / "order.json").read_text(encoding="utf-8")
+)
 order = Order.model_validate(raw)
 
 item = order.items[0]

@@ -1,0 +1,8 @@
+{
+  "order_id": "A-1042",
+  "member_rank": "gold",
+  "items": [
+    {"category": "book", "price": "1500", "qty": 2}
+  ],
+  "ship_to": "remote"
+}

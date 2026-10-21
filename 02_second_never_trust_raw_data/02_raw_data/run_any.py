@@ -2,6 +2,8 @@
 import json
 import pathlib
 
-order = json.loads(pathlib.Path("order.json").read_text(encoding="utf-8"))
+order = json.loads(
+    (pathlib.Path(__file__).parent / "order.json").read_text(encoding="utf-8")
+)
 item = order["items"][0]
 print(repr(item["price"] * item["qty"]))

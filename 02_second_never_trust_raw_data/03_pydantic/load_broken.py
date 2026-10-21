@@ -6,7 +6,9 @@ from pydantic import ValidationError
 
 from models import Order
 
-raw = json.loads(pathlib.Path("order_broken.json").read_text(encoding="utf-8"))
+raw = json.loads(
+    (pathlib.Path(__file__).parent / "order_broken.json").read_text(encoding="utf-8")
+)
 try:
     Order.model_validate(raw)
 except ValidationError as e:
