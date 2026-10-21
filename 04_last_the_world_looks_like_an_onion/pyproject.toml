@@ -1,0 +1,13 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["demos"]
+
+[tool.ruff.lint]
+extend-select = ["TID251"]  # banned-api。禁止リストは各層の ruff.toml に書く
+
+[tool.pyrefly]
+project-includes = ["billing", "tests"]

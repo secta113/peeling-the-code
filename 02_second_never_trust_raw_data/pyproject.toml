@@ -1,0 +1,7 @@
+[tool.pyrefly]
+python-version = "3.11"
+project-includes = ["**/*.py"]
+
+# 厳しさは3段階。慣れるまでは既定のままでいい。
+# preset = "legacy"   # 緩い（mypy から移ってきた直後）
+# preset = "strict"   # 厳しい（注釈の抜けも指摘される）

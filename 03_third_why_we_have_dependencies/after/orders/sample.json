@@ -1,0 +1,5 @@
+{
+  "order_id": "A-1042",
+  "email": "taro@example.com",
+  "items": [{"category": "book", "price": 1500, "qty": 2}]
+}

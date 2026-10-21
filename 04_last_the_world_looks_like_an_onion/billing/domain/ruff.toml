@@ -1,0 +1,10 @@
+extend = "../../pyproject.toml"  # 親の設定を引き継ぐ（消すと黙って効かなくなる）
+
+[lint.flake8-tidy-imports.banned-api]
+"billing.application".msg = "domain は一番内側。外側の層を知らない"
+"billing.infrastructure".msg = "domain は一番内側。外側の層を知らない"
+"sqlite3".msg = "domain は DB を知らない"
+"requests".msg = "domain は外部 API を知らない"
+"pydantic".msg = "domain は dataclass で書く。検査は外側の門で"
+"datetime.date.today".msg = "今日の日付は引数で受け取る（第3回）"
+"os.environ".msg = "設定は Settings から引数で受け取る（第3回）"

@@ -1,0 +1,7 @@
+# 動作確認したバージョン（2026年10月）
+pydantic==2.14.1
+pydantic-settings==2.16.1
+requests==2.33.1
+pytest==9.1.1
+ruff==0.17.1
+pyrefly==1.4.0
