@@ -1,14 +1,18 @@
 # 第2回 講習会 デモ用コード：始める静的型チェック
 
 スライドの進行に合わせて、4つのディレクトリにコードを整理しています。  
-コマンドはこのディレクトリ（`02_second_never_trust_raw_data`）直下から実行できます。
+コマンドはすべてこのディレクトリ（`02_second_never_trust_raw_data`）直下から実行してください。
 
 ```
 01_types/     【基礎】型なしの恐怖と静的型チェック
 02_raw_data/  【境界】生データとAnyの落とし穴
 03_pydantic/  【防壁】Pydanticによるバリデーション
 04_stages/    【発展】段階的モデルとイミュータビリティ
+models.py     各ディレクトリから共通で使う Order / Item モデル
 ```
+
+`python` は `python -m 01_types.check` のようにモジュール名で実行します。
+`python 01_types/check.py` の形だと直下が import の検索先に入らず、`models` が見つかりません。
 
 ## 準備
 
@@ -30,18 +34,18 @@ pip install -r requirements-dev.txt
 | 13 | **01_types** | `pyrefly check 01_types/billing.py` | `float * None` を下線付きで指摘（第1回のコード） |
 | 14 | **01_types** | `pyrefly check 01_types/billing.py` | 引数の取り違え 2件（22行目） |
 | 15 | 設定切替 | `pyproject.toml` の `preset` を切り替え | 厳しさは legacy / 既定 / strict の3段階 |
-| 17 | **01_types** | `pyrefly check 01_types/check.py`<br>`python 01_types/check.py` | 怒られるが、実行すると 'abcabc'（静的と実行時のズレ） |
-| 18 | **02_raw_data** | `pyrefly check 02_raw_data/load_any.py` | `revealed type: Unknown` / `0 errors`（Any は沈黙する） |
-| 19 | **02_raw_data** | `python 02_raw_data/run_any.py` | `'15001500'` ― 文字列のまま足し算されて落ちない |
-| 23 | **03_pydantic** | `python 03_pydantic/load_model.py` | `3000` ― 門（Pydantic）を1枚通しただけで安全になる |
-| 24 | **03_pydantic** | `python 03_pydantic/load_broken.py` | 3件まとめての ValidationError |
-| 26 | **03_pydantic** | `pyrefly check 03_pydantic/typo.py` | dict は素通り / モデルは `Did you mean price?` |
-| 27 | **04_stages** | `python 04_stages/app.py`<br>`pyrefly check 04_stages/app.py` | append は実行時は素通り。静的側だけが捕まえる |
-| 28 | **04_stages** | `python 04_stages/stages.py`<br>`pyrefly check 04_stages/stages.py` | 段階ごとにモデルを分ける。飛ばすと止まる |
-| 29 | **01_types** | `pyrefly check 01_types/literal_demo.py`<br>`python 01_types/literal_demo.py` | Literal型：同じ1行が両側で効く |
+| 17 | **01_types** | `pyrefly check 01_types/check.py`<br>`python -m 01_types.check` | 怒られるが、実行すると 'abcabc'（静的と実行時のズレ） |
+| 18 | **02_raw_data** | `pyrefly check 02_raw_data/load_any.py` | `revealed type: Any` / `0 errors`（Any は沈黙する） |
+| 19 | **02_raw_data** | `python -m 02_raw_data.run_any` | `'15001500'` ― 文字列のまま足し算されて落ちない |
+| 23 | **03_pydantic** | `python -m 03_pydantic.load_model` | `3000` ― 門（Pydantic）を1枚通しただけで安全になる |
+| 24 | **03_pydantic** | `python -m 03_pydantic.load_broken` | 3件まとめての ValidationError |
+| 26 | **03_pydantic** | `pyrefly check 03_pydantic/typo.py`（①と②を切り替え） | dict は素通り / モデルは `Did you mean price?` |
+| 27 | **04_stages** | `python -m 04_stages.app`<br>`pyrefly check 04_stages/app.py` | append は実行時は素通り。静的側だけが捕まえる |
+| 28 | **04_stages** | `python -m 04_stages.stages`<br>`pyrefly check 04_stages/stages.py` | 段階ごとにモデルを分ける。飛ばすと止まる |
+| 29 | **01_types** | `pyrefly check 01_types/literal_demo.py`<br>`python -m 01_types.literal_demo` | Literal型：同じ1行が両側で効く |
 | 36 | 移行ツール | `pyrefly init` | 既存の設定を読んで変換する |
 
-> `04_stages/assignment_demo.py` は27ページの補足です。`validate_assignment=True` を付けると再代入は止まりますが、`append` は止まらないことを確認できます。
+> `04_stages/assignment_demo.py`（`python -m 04_stages.assignment_demo`）は27ページの補足です。`validate_assignment=True` を付けると再代入は止まりますが、`append` は止まらないことを確認できます。
 
 ---
 

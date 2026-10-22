@@ -1,5 +1,5 @@
 """12ページ: 型注釈がないと、型チェッカは何も言わない。
-   > pyrefly check untyped.py  →  INFO 0 errors
+   > pyrefly check 01_types/untyped.py  →  INFO 0 errors
 """
 
 COUPONS = {"SPRING": 0.95, "NEWYEAR": 0.90}
