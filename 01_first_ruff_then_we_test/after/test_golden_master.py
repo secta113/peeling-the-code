@@ -19,6 +19,8 @@ def all_cases():
             {"category": "book", "price": 4000, "qty": 3},
             {"category": "other", "price": 800, "qty": 1},
         ],
+        # 送料無料の境界(10000円ちょうど)を狙って追加
+        [{"category": "other", "price": 10000, "qty": 1}],
     ]
     ranks = ["gold", "silver", "bronze", "none"]
     coupons = ["SPRING", "NEWYEAR", None]

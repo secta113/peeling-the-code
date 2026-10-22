@@ -1,7 +1,7 @@
 """28ページ: 段階の数だけモデルを作る。
 
-   > python stages.py         → 正しい順番なら通る
-   > pyrefly check stages.py  → 段階を飛ばすと止まる
+   > python -m 04_stages.stages         → 正しい順番なら通る
+   > pyrefly check 04_stages/stages.py  → 段階を飛ばすと止まる
 """
 from typing import Literal
 

@@ -1,14 +1,16 @@
 """27ページ: 門を通した後は、pydantic は見ていない。
 
-   > python app.py         → 不正なデータが素通りする
-   > pyrefly check app.py  → 静的側が捕まえる
+   > python -m 04_stages.app         → 不正なデータが素通りする
+   > pyrefly check 04_stages/app.py  → 静的側が捕まえる
 """
 import json
 import pathlib
 
 from models import Order
 
-raw = json.loads(pathlib.Path("order.json").read_text(encoding="utf-8"))
+raw = json.loads(
+    (pathlib.Path(__file__).parent / "order.json").read_text(encoding="utf-8")
+)
 o = Order.model_validate(raw)          # ここは検証される
 
 o.items.append({"category": "food", "price": "たぶん300", "qty": 0})

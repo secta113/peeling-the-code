@@ -1,6 +1,6 @@
 """17ページ: 型注釈は実行時には何もしない。
-   > mypy check.py    → error
-   > python check.py  → 'abcabc'
+   > pyrefly check 01_types/check.py  → error
+   > python -m 01_types.check         → 'abcabc'
 """
 
 
